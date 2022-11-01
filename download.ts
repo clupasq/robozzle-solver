@@ -1,6 +1,6 @@
-const axios = require("axios")
+import axios from "axios";
 
-const downloadLevel = async (levelNo) => {
+const downloadLevel = async (levelNo: number): Promise<string> => {
     const response = await axios({
         method: "POST",
         url: "http://www.robozzle.com/RobozzleService.svc",
