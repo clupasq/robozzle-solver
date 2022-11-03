@@ -26,7 +26,6 @@ export const offset = (dir: Direction): Coords => {
 
 export const toDirection = ([fromY, fromX]: Coords, dir: Direction): Coords => {
     const [yOffset, xOffset] = offset(dir)
-    console.log(offset(dir))
     return [fromY + yOffset, fromX + xOffset]
 }
 
@@ -114,7 +113,7 @@ export const createInstructionSet = (
             for (const toColor of allowedColorChanges) {
                 instructions.push({ condition, operation: { type: "color-change", toColor }})
             }
-            for (let i = 1; i <= functionCount; i++) {
+            for (let i = 0; i < functionCount; i++) {
                 instructions.push({ condition, operation: { type: "function-call", functionNumber: i} })
             }
         }
@@ -122,6 +121,54 @@ export const createInstructionSet = (
 }
 
 export type GameFunction = (Instruction | undefined)[]
+
+export type SolutionAttempt = GameFunction[]
+
+export const functionCountAllocations = (functionLengths: number[], level: number = 0): number[][] => {
+    if (level === functionLengths.length) {
+        return [[]]
+    }
+    const allocations = []
+    const suffixAllocations = functionCountAllocations(functionLengths, level + 1)
+    for (let i = 0; i < functionLengths[level]; i++) {
+        for (const sa of suffixAllocations) {
+            allocations.push([i, ...sa])
+        }
+    }
+    return allocations
+}
+
+export const allocateInstructions = (functionLengths: number[], instructions: Instruction[]): SolutionAttempt[] => {
+    const sols: SolutionAttempt[] = []
+
+    for (const fca of functionCountAllocations(functionLengths)) {
+        if (fca[0] === 0) {
+            // the first function must have at least one instruction
+            continue
+        }
+
+        const is = instructions.length
+        const ic = fca.reduce((p, c) => p + c, 0)
+
+        for (let i = 0; i < Math.pow(is, ic); i++) {
+            let n = i
+            let ix = 0
+            const sol: SolutionAttempt = []
+            sols.push(sol)
+            for (let fi = 0; fi < functionLengths.length; fi++) {
+                sol.push([])
+                for (let ffi = 0; ffi < functionLengths[fi]; ffi++) {
+                    const ii = n % is
+                    n = Math.floor(n / ii)
+                    sol[sol.length - 1].push(instructions[ii])
+                    ix += 1
+                }
+            }
+        }
+    }
+
+    return sols
+}
 
 export interface RunContext {
     functionIndex: number
@@ -145,7 +192,7 @@ export interface Logger {
 }
 
 const NO_LOGGER: Logger = {
-    info: (s: string) => {}
+    info: (_: string) => {}
 }
 
 export const CONSOLE_LOGGER: Logger = {

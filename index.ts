@@ -1,5 +1,7 @@
-import {exec} from "child_process"
-import {Board, CellColor, GameState, Row, execute, Instruction, CONSOLE_LOGGER} from "./GameState"
+import {
+    Board, CellColor, GameState, Row, allocateInstructions,
+    execute, Instruction, CONSOLE_LOGGER, createInstructionSet
+} from "./GameState"
 
 const parseCell = (cellStr: string): CellColor | undefined => {
     if (cellStr === "R" || cellStr === "G" || cellStr === "B") {
@@ -48,24 +50,72 @@ const parseBoard = (boardStr: string): Board => {
 //     stars: new Set(["1,2"])
 // }
 
+// const level: GameState = {
+//     board: parseBoard(
+//         "BBB\n" +
+//         "B B\n" +
+//         "B B"),
+//     robot: {
+//         position: [2, 0],
+//         direction: "N"
+//     },
+//     stars: new Set(["2,2"])
+// }
+// const instructions: Instruction[] = [
+//     { condition: "B", operation: { type: "move", where: "forward" } },
+//     { condition: "B", operation: { type: "move", where: "forward" } },
+//     { condition: "B", operation: { type: "move", where: "right" } },
+//     { condition: "B", operation: { type: "function-call", functionNumber: 0 } }
+// ]
+
 const level: GameState = {
     board: parseBoard(
-        "BBB\n" +
-        "B B\n" +
-        "B B"),
+        "  B B B B B B  \n" +
+        "  B B B B B B  \n" +
+        "BBRBRBRBRBRBRBB\n" +
+        "  B         B  \n" +
+        "BBR         RBB\n" +
+        "  B         B  \n" +
+        "BBR         RBB\n" +
+        "  B         B  \n" +
+        "BBRBRBRBRBRBRBB\n" +
+        "  B B B B B B  \n" +
+        "  B B B B B B  "),
     robot: {
-        position: [2, 0],
-        direction: "N"
+        position: [4, 2],
+        direction: "E"
     },
-    stars: new Set(["2,2"])
+    stars: new Set([
+        "0,2",
+        "0,4",
+        "0,6",
+        "0,8",
+        "0,10",
+        "0,12",
+        "2,0", "2,14",
+        "4,0", "4,14",
+        "6,0", "6,14",
+        "8,0", "8,14",
+        "10,2",
+        "10,4",
+        "10,6",
+        "10,8",
+        "10,10",
+        "10,12",
+    ])
 }
 
-const instructions: Instruction[] = [
-    { condition: "B", operation: { type: "move", where: "forward" } },
-    { condition: "B", operation: { type: "move", where: "forward" } },
-    { condition: "B", operation: { type: "move", where: "right" } },
-    { condition: "B", operation: { type: "function-call", functionNumber: 0 } }
-]
+const instructions: Instruction[] = createInstructionSet(1, [])
+const sols = allocateInstructions([5], instructions)
 
-const result = execute(level, [instructions], CONSOLE_LOGGER)
-console.log(result)
+let attempt = 0
+for (const sol of sols) {
+    console.log(sols)
+    console.log(attempt++)
+    const result = execute(level, sol, /*CONSOLE_LOGGER*/)
+    if (result) {
+        console.log(JSON.stringify(sol))
+        break
+    }
+}
+
