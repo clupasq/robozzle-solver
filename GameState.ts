@@ -26,6 +26,7 @@ export const offset = (dir: Direction): Coords => {
 
 export const toDirection = ([fromY, fromX]: Coords, dir: Direction): Coords => {
     const [yOffset, xOffset] = offset(dir)
+    console.log(offset(dir))
     return [fromY + yOffset, fromX + xOffset]
 }
 
@@ -129,29 +130,54 @@ export interface RunContext {
 
 const getCurrentCellColor = (gameState: GameState): CellColor | undefined => {
     const [y, x] = gameState.robot.position;
+    const row = gameState.board.rows[y]
+    if (!row) {
+        return undefined
+    }
     return gameState.board.rows[y][x]
 }
 
 const isRobotOutsideValidTiles = (gameState: GameState): boolean =>
-    !!getCurrentCellColor(gameState)
+    !getCurrentCellColor(gameState)
+
+export interface Logger {
+    info: (str: string) => void
+}
+
+const NO_LOGGER: Logger = {
+    info: (s: string) => {}
+}
+
+export const CONSOLE_LOGGER: Logger = {
+    info: (s) => console.info(s)
+}
 
 /**
  * Execute a set of instructions for a game and return `true` if the game was solved.
  */
-export const execute = (initialGameState: GameState, fns: GameFunction[]): boolean => {
+export const execute = (
+    initialGameState: GameState,
+    fns: GameFunction[],
+    logger: Logger = NO_LOGGER): boolean => {
     const stack: RunContext[] = [{functionIndex: 0, instructionIndex: 0}]
     const gameState = cloneGameState(initialGameState)
 
     while (stack.length > 0) {
+        const { robot } = gameState
+        logger.info(`Current state: robot at ${coordsToString(robot.position)} (heading ${robot.direction})`)
         if (gameState.stars.size === 0) {
             return true
         }
 
         const rc = stack.pop()
-        if (!rc) continue;
+        if (!rc) {
+            logger.info("No-op. Skipping...")
+            continue;
+        }
         const fn = fns[rc.functionIndex]
 
         if (fn.length > rc.instructionIndex + 1) {
+            logger.info("Queuing up next instruction from same function")
             stack.push({
                 functionIndex: rc.functionIndex,
                 instructionIndex: rc.instructionIndex + 1
@@ -163,13 +189,16 @@ export const execute = (initialGameState: GameState, fns: GameFunction[]): boole
             continue
         }
 
+        const currentCellColor = getCurrentCellColor(gameState)
+
         if (instruction.condition !== undefined &&
-            getCurrentCellColor(gameState) != instruction.condition) {
-            // skip conditional instruction
+            currentCellColor != instruction.condition) {
+            logger.info(`Skipping ${instruction.condition} instruction on ${currentCellColor}`)
             continue;
         }
 
         const op = instruction.operation
+        logger.info(`Executing: ${JSON.stringify(op)}`)
 
         if (op.type === "function-call") {
             stack.push({
@@ -177,18 +206,19 @@ export const execute = (initialGameState: GameState, fns: GameFunction[]): boole
                 instructionIndex: 0
             })
         } else if (op.type === "color-change") {
-            const [y, x] = gameState.robot.position
+            const [y, x] = robot.position
             gameState.board.rows[y][x] = op.toColor
         } else if (op.type === "move") {
             if (op.where === "forward") {
-                const { robot } = gameState
                 robot.position = toDirection(robot.position, robot.direction)
                 if (isRobotOutsideValidTiles(gameState)) {
+                    logger.info(`Went outside valid tiles, @ ${coordsToString(robot.position)}`)
                     return false
                 }
                 const posStr = coordsToString(robot.position)
                 const starObtained = gameState.stars.delete(posStr)
                 if (starObtained && gameState.stars.size === 0) {
+                    logger.info("Game WON!")
                     return true
                 }
             } else if (op.where === "left") {
@@ -199,5 +229,6 @@ export const execute = (initialGameState: GameState, fns: GameFunction[]): boole
         }
     }
 
+    logger.info("Ran out of instructions.")
     return false
 }
