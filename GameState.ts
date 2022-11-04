@@ -1,4 +1,4 @@
-import {send} from "process"
+import fastCartesian from "fast-cartesian"
 
 export type CellColor = "R" | "G" | "B"
 
@@ -158,50 +158,24 @@ export const solutionAttemptToString = (s: SolutionAttempt): string => {
     return s.map(fn => `[ ${gameFunctionToString(fn)} ]`).join(" + ")
 }
 
-export const functionCountAllocations = (functionLengths: number[], level: number = 0): number[][] => {
-    if (level === functionLengths.length) {
-        return [[]]
-    }
-    const allocations = []
-    const suffixAllocations = functionCountAllocations(functionLengths, level + 1)
-    for (let i = 0; i < functionLengths[level]; i++) {
-        for (const sa of suffixAllocations) {
-            allocations.push([i, ...sa])
+const enumeratePossibilitiesForLength = (length: number, instructions: Instruction[]): Instruction[][] => {
+    const x: Instruction[][] = Array.from(new Array(length)).map(() => instructions)
+    return fastCartesian(x)
+}
+
+const enumeratePossibilitiesUpToLength = (maxLength: number, instructions: Instruction[]): Instruction[][] => {
+    const fnInstrs = []
+    for (let i = 0; i <= maxLength; i++) {
+        for (const p of enumeratePossibilitiesForLength(i, instructions)) {
+            fnInstrs.push(p)
         }
     }
-    return allocations
+    return fnInstrs
 }
 
 export const allocateInstructions = (functionLengths: number[], instructions: Instruction[]): SolutionAttempt[] => {
-    const sols: SolutionAttempt[] = []
-
-    for (const fca of functionCountAllocations(functionLengths)) {
-        if (fca[0] === 0) {
-            // the first function must have at least one instruction
-            continue
-        }
-
-        const is = instructions.length
-        const ic = fca.reduce((p, c) => p + c, 0)
-
-        for (let i = 0; i < Math.pow(is, ic); i++) {
-            let n = i
-            let ix = 0
-            const sol: SolutionAttempt = []
-            sols.push(sol)
-            for (let fi = 0; fi < functionLengths.length; fi++) {
-                sol.push([])
-                for (let ffi = 0; ffi < functionLengths[fi]; ffi++) {
-                    const ii = n % is
-                    n = Math.floor(n / ii)
-                    sol[sol.length - 1].push(instructions[ii])
-                    ix += 1
-                }
-            }
-        }
-    }
-
-    return sols
+    const possibilitiesByFunction = functionLengths.map(l => enumeratePossibilitiesUpToLength(l, instructions))
+    return fastCartesian(possibilitiesByFunction)
 }
 
 export interface RunContext {

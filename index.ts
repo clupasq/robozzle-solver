@@ -37,7 +37,6 @@ const parseBoard = (boardStr: string): Board => {
     return { rows }
 }
 
-
 // const level: GameState = {
 //     board: parseBoard(
 //         "   \n" +
@@ -49,6 +48,12 @@ const parseBoard = (boardStr: string): Board => {
 //     },
 //     stars: new Set(["1,2"])
 // }
+// const instructions: Instruction[] = [
+//     { operation: { type: "move", where: "forward" } },
+//     { operation: { type: "move", where: "forward" } },
+//     { operation: { type: "move", where: "right" } },
+//     { operation: { type: "function-call", functionNumber: 0 } }
+// ]
 
 // const level: GameState = {
 //     board: parseBoard(
@@ -104,18 +109,21 @@ const level: GameState = {
         "10,12",
     ])
 }
-
 const instructions: Instruction[] = createInstructionSet(1, [])
+
 const sols = allocateInstructions([5], instructions)
 
 let attempt = 0
 for (const sol of sols) {
-    console.log(attempt++)
+    attempt++
     console.log(solutionAttemptToString(sol))
-    const result = execute(level, sol, /*CONSOLE_LOGGER*/)
+    const result = execute(level, sol, CONSOLE_LOGGER)
+    if (attempt > 10000) break
     if (result) {
         console.log(solutionAttemptToString(sol))
         break
     }
 }
+
+console.log("Attempts: ", attempt)
 
