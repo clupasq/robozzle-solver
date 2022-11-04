@@ -1,3 +1,5 @@
+import {send} from "process"
+
 export type CellColor = "R" | "G" | "B"
 
 export type Coords = [number, number]
@@ -124,6 +126,38 @@ export type GameFunction = (Instruction | undefined)[]
 
 export type SolutionAttempt = GameFunction[]
 
+export const operationToString = (o: Operation): string => {
+    if (o.type === "function-call") {
+        return `F${o.functionNumber + 1}`;
+    }
+    if (o.type === "move") {
+        return o.where
+    }
+    return `TO:${o.toColor}`
+}
+
+export const instructionToString = (i: Instruction): string => {
+    const { operation, condition } = i
+    if (condition) {
+        return `(${condition})|${operationToString(operation)}`
+    }
+    return operationToString(operation)
+}
+
+export const gameFunctionToString = (fn: GameFunction): string => {
+    const is: string[] = []
+    for (const i of fn) {
+        if (i !== undefined) {
+            is.push(instructionToString(i))
+        }
+    }
+    return is.join(", ")
+}
+
+export const solutionAttemptToString = (s: SolutionAttempt): string => {
+    return s.map(fn => `[ ${gameFunctionToString(fn)} ]`).join(" + ")
+}
+
 export const functionCountAllocations = (functionLengths: number[], level: number = 0): number[][] => {
     if (level === functionLengths.length) {
         return [[]]
@@ -208,13 +242,33 @@ export const execute = (
     logger: Logger = NO_LOGGER): boolean => {
     const stack: RunContext[] = [{functionIndex: 0, instructionIndex: 0}]
     const gameState = cloneGameState(initialGameState)
+    const { robot } = gameState
+
+    const currentStateToString = () => {
+        const robotState = `${robot.position[0]},${robot.position[1]},${robot.direction}`
+        const rc = stack[stack.length - 1]
+        const execContext = `fn${rc.functionIndex}[${rc.instructionIndex}]`
+        return `${robotState}|${execContext}`
+    }
+
+    // Todo keep track of state to detect infinite loops
+    let seenStates = new Set()
+    seenStates.add(currentStateToString())
 
     while (stack.length > 0) {
-        const { robot } = gameState
         logger.info(`Current state: robot at ${coordsToString(robot.position)} (heading ${robot.direction})`)
         if (gameState.stars.size === 0) {
+            logger.info("Game WON initially!")
             return true
         }
+
+        const currentState = currentStateToString()
+        if (seenStates.has(currentState)) {
+            logger.info(`Detected loop @state: ${currentState}`)
+            return false
+        }
+
+        seenStates.add(currentState)
 
         const rc = stack.pop()
         if (!rc) {
@@ -254,7 +308,10 @@ export const execute = (
             })
         } else if (op.type === "color-change") {
             const [y, x] = robot.position
-            gameState.board.rows[y][x] = op.toColor
+            if (gameState.board.rows[y][x] !== op.toColor) {
+                gameState.board.rows[y][x] = op.toColor
+                seenStates = new Set()
+            }
         } else if (op.type === "move") {
             if (op.where === "forward") {
                 robot.position = toDirection(robot.position, robot.direction)

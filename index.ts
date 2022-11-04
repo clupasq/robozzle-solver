@@ -1,6 +1,6 @@
 import {
     Board, CellColor, GameState, Row, allocateInstructions,
-    execute, Instruction, CONSOLE_LOGGER, createInstructionSet
+    execute, Instruction, CONSOLE_LOGGER, createInstructionSet, solutionAttemptToString
 } from "./GameState"
 
 const parseCell = (cellStr: string): CellColor | undefined => {
@@ -110,11 +110,11 @@ const sols = allocateInstructions([5], instructions)
 
 let attempt = 0
 for (const sol of sols) {
-    console.log(sols)
     console.log(attempt++)
+    console.log(solutionAttemptToString(sol))
     const result = execute(level, sol, /*CONSOLE_LOGGER*/)
     if (result) {
-        console.log(JSON.stringify(sol))
+        console.log(solutionAttemptToString(sol))
         break
     }
 }
