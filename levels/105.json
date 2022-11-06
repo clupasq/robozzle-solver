@@ -1,0 +1,347 @@
+{
+  "id": 105,
+  "name": "zipline",
+  "initialState": {
+    "board": {
+      "rows": [
+        [
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R"
+        ],
+        [
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R"
+        ],
+        [
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R"
+        ],
+        [
+          "R",
+          "B",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "G",
+          "R"
+        ],
+        [
+          "R",
+          "B",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "G",
+          "R"
+        ],
+        [
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R"
+        ],
+        [
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R"
+        ],
+        [
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R"
+        ],
+        [
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R"
+        ],
+        [
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R"
+        ],
+        [
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R"
+        ],
+        [
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          "R"
+        ]
+      ]
+    },
+    "robot": {
+      "position": [
+        4,
+        1
+      ],
+      "direction": "N"
+    },
+    "stars": {}
+  },
+  "allowedInstructions": [
+    {
+      "condition": "R",
+      "operation": {
+        "type": "move",
+        "where": "forward"
+      }
+    },
+    {
+      "condition": "R",
+      "operation": {
+        "type": "move",
+        "where": "left"
+      }
+    },
+    {
+      "condition": "R",
+      "operation": {
+        "type": "move",
+        "where": "right"
+      }
+    },
+    {
+      "condition": "R",
+      "operation": {
+        "type": "function-call",
+        "functionNumber": 0
+      }
+    },
+    {
+      "condition": "G",
+      "operation": {
+        "type": "move",
+        "where": "forward"
+      }
+    },
+    {
+      "condition": "G",
+      "operation": {
+        "type": "move",
+        "where": "left"
+      }
+    },
+    {
+      "condition": "G",
+      "operation": {
+        "type": "move",
+        "where": "right"
+      }
+    },
+    {
+      "condition": "G",
+      "operation": {
+        "type": "function-call",
+        "functionNumber": 0
+      }
+    },
+    {
+      "condition": "B",
+      "operation": {
+        "type": "move",
+        "where": "forward"
+      }
+    },
+    {
+      "condition": "B",
+      "operation": {
+        "type": "move",
+        "where": "left"
+      }
+    },
+    {
+      "condition": "B",
+      "operation": {
+        "type": "move",
+        "where": "right"
+      }
+    },
+    {
+      "condition": "B",
+      "operation": {
+        "type": "function-call",
+        "functionNumber": 0
+      }
+    },
+    {
+      "operation": {
+        "type": "move",
+        "where": "forward"
+      }
+    },
+    {
+      "operation": {
+        "type": "move",
+        "where": "left"
+      }
+    },
+    {
+      "operation": {
+        "type": "move",
+        "where": "right"
+      }
+    },
+    {
+      "operation": {
+        "type": "function-call",
+        "functionNumber": 0
+      }
+    }
+  ],
+  "functionLengths": [
+    4
+  ]
+}

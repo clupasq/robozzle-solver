@@ -45,7 +45,7 @@ export const toLeft = (dir: Direction): Direction => rotate(dir, 1)
 
 export type CoordsStr = string
 
-const coordsToString = ([y, x]: Coords): CoordsStr => `${y},${x}`
+export const coordsToString = ([y, x]: Coords): CoordsStr => `${y},${x}`
 
 export interface Robot {
     position: Coords
@@ -102,7 +102,7 @@ export interface Instruction {
     condition?: Condition
 }
 
-const CONDITIONS: Condition[] = ["R", "G", "B", undefined];
+const CONDITIONS: Condition[] = ["R", "G", "B", undefined]
 
 export const createInstructionSet = (
     functionCount: number,
@@ -227,7 +227,6 @@ export const execute = (
 
     // Todo keep track of state to detect infinite loops
     let seenStates = new Set()
-    seenStates.add(currentStateToString())
 
     while (stack.length > 0) {
         logger.info(`Current state: robot at ${coordsToString(robot.position)} (heading ${robot.direction})`)
@@ -310,3 +309,12 @@ export const execute = (
     logger.info("Ran out of instructions.")
     return false
 }
+
+export interface Level {
+    id: number
+    name?: string
+    initialState: GameState
+    allowedInstructions: Instruction[]
+    functionLengths: number[]
+}
+
