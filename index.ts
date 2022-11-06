@@ -122,24 +122,25 @@ const solveLevel = (level: Level) => {
         const result = execute(level.initialState, sol)
         // if (attempt > 10000) break
         if (result) {
-            console.log(solutionAttemptToString(sol))
-            break
+            console.log("SOLVED: ", solutionAttemptToString(sol))
+            console.log("Attempts: ", attempt)
+            return
         }
     }
-    console.log("Attempts: ", attempt)
+    console.log(`No solution after ${attempt} attemps...`)
 }
 
 
 const main = async () => {
     const level = await getLevel(1004)
-    // solveLevel(level)
+    solveLevel(level)
 
-    execute(level.initialState, [[
-        { condition: "R", operation: { type: "move", where: "forward" }},
-        { condition: "R", operation: { type: "move", where: "left" }},
-        { operation: { type: "move", where: "forward" }},
-        { operation: { type: "function-call", functionNumber: 0 }},
-    ]], CONSOLE_LOGGER)
+    // execute(level.initialState, [[
+    //     { condition: "R", operation: { type: "move", where: "forward" }},
+    //     { condition: "R", operation: { type: "move", where: "left" }},
+    //     { operation: { type: "move", where: "forward" }},
+    //     { operation: { type: "function-call", functionNumber: 0 }},
+    // ]], CONSOLE_LOGGER)
 
 }
 

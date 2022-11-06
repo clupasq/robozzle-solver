@@ -109,7 +109,7 @@ const downloadLevel = async (levelNo: number): Promise<Level> => {
         rows.push(row)
         for (let x = 0; x < rowStr.length; x++) {
             const item = itemMask[y][x]
-            if (item === " ") {
+            if (item === "#") {
                 row.push(undefined)
                 continue
             }
