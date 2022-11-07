@@ -2,7 +2,7 @@ import axios from "axios"
 import {promises as fsPromises} from "fs"
 import path from "path"
 import {XMLParser} from "fast-xml-parser"
-import {createInstructionSet, coordsToString, Level, Row} from "./GameState"
+import {createInstructionSet, coordsToString, Level, Row, CellColor} from "./GameState"
 
 const downloadLevelAsXmlString = async (levelNo: number): Promise<string> => {
     const response = await axios({
@@ -131,6 +131,19 @@ const downloadLevel = async (levelNo: number): Promise<Level> => {
         throw new Error(`Unknown direction: ${directionStr}`)
     }
 
+    let allowedCommands = levelData["a:AllowedCommands"]
+    let allowedColorChanges: CellColor[] = []
+    if (allowedCommands === 0) {
+        // no color changes
+    } else if (allowedCommands === 1) {
+        allowedColorChanges.push("R")
+    } else if (allowedCommands === 2) {
+        allowedColorChanges.push("G")
+    } else {
+        // TODO: Probably these are bit flags and blue=4.
+        throw new Error(`Unknown AllowedCommands: ${allowedCommands}`)
+    }
+
     const level: Level = {
         id: levelData["a:Id"],
         name: levelData["a:Title"],
@@ -145,7 +158,7 @@ const downloadLevel = async (levelNo: number): Promise<Level> => {
             },
             stars
         },
-        allowedInstructions: createInstructionSet(functionLengths.length, [] /* TODO */),
+        allowedInstructions: createInstructionSet(functionLengths.length, allowedColorChanges),
         functionLengths
     }
 

@@ -1,0 +1,347 @@
+{
+  "id": 94,
+  "name": "Treasure Hunters",
+  "initialState": {
+    "board": {
+      "rows": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          "R",
+          "G",
+          "G",
+          "G",
+          "R",
+          null,
+          "B",
+          "B",
+          "B",
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          "R",
+          "G",
+          "G",
+          "R",
+          null,
+          "G",
+          null,
+          "B",
+          "B",
+          "B",
+          "B",
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          "G",
+          "G",
+          null,
+          "G",
+          null,
+          "G",
+          null,
+          "B",
+          null,
+          "B",
+          "B",
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          "G",
+          "R",
+          "G",
+          "R",
+          null,
+          "G",
+          null,
+          "B",
+          "B",
+          "B",
+          "B",
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          "G",
+          null,
+          null,
+          null,
+          null,
+          "G",
+          null,
+          null,
+          null,
+          null,
+          "B",
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          "R",
+          null,
+          null,
+          null,
+          null,
+          "B",
+          "B",
+          "B",
+          "B",
+          "B",
+          "B",
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    "robot": {
+      "position": [
+        10,
+        1
+      ],
+      "direction": "N"
+    },
+    "stars": {}
+  },
+  "allowedInstructions": [
+    {
+      "condition": "R",
+      "operation": {
+        "type": "move",
+        "where": "forward"
+      }
+    },
+    {
+      "condition": "R",
+      "operation": {
+        "type": "move",
+        "where": "left"
+      }
+    },
+    {
+      "condition": "R",
+      "operation": {
+        "type": "move",
+        "where": "right"
+      }
+    },
+    {
+      "condition": "R",
+      "operation": {
+        "type": "function-call",
+        "functionNumber": 0
+      }
+    },
+    {
+      "condition": "G",
+      "operation": {
+        "type": "move",
+        "where": "forward"
+      }
+    },
+    {
+      "condition": "G",
+      "operation": {
+        "type": "move",
+        "where": "left"
+      }
+    },
+    {
+      "condition": "G",
+      "operation": {
+        "type": "move",
+        "where": "right"
+      }
+    },
+    {
+      "condition": "G",
+      "operation": {
+        "type": "function-call",
+        "functionNumber": 0
+      }
+    },
+    {
+      "condition": "B",
+      "operation": {
+        "type": "move",
+        "where": "forward"
+      }
+    },
+    {
+      "condition": "B",
+      "operation": {
+        "type": "move",
+        "where": "left"
+      }
+    },
+    {
+      "condition": "B",
+      "operation": {
+        "type": "move",
+        "where": "right"
+      }
+    },
+    {
+      "condition": "B",
+      "operation": {
+        "type": "function-call",
+        "functionNumber": 0
+      }
+    },
+    {
+      "operation": {
+        "type": "move",
+        "where": "forward"
+      }
+    },
+    {
+      "operation": {
+        "type": "move",
+        "where": "left"
+      }
+    },
+    {
+      "operation": {
+        "type": "move",
+        "where": "right"
+      }
+    },
+    {
+      "operation": {
+        "type": "function-call",
+        "functionNumber": 0
+      }
+    }
+  ],
+  "functionLengths": [
+    6
+  ]
+}

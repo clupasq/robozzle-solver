@@ -113,14 +113,18 @@ const parseBoard = (boardStr: string): Board => {
 // const instructions: Instruction[] = createInstructionSet(1, [])
 
 const solveLevel = (level: Level) => {
+    console.log(`Solving level ${level.id}...`)
     const sols = allocateInstructions(level.functionLengths, level.allowedInstructions)
 
     let attempt = 0
     for (const sol of sols) {
         attempt++
-        console.log(solutionAttemptToString(sol))
+        // console.log(solutionAttemptToString(sol))
         const result = execute(level.initialState, sol)
         // if (attempt > 10000) break
+        if (attempt % 1000000 === 0) {
+            console.log(`${attempt} / ${sols.length} attempts so far...`)
+        }
         if (result) {
             console.log("SOLVED: ", solutionAttemptToString(sol))
             console.log("Attempts: ", attempt)
@@ -132,7 +136,7 @@ const solveLevel = (level: Level) => {
 
 
 const main = async () => {
-    const level = await getLevel(1004)
+    const level = await getLevel(94)
     solveLevel(level)
 
     // execute(level.initialState, [[

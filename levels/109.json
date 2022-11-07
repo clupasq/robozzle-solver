@@ -1,0 +1,347 @@
+{
+  "id": 109,
+  "name": "Second kind of memory",
+  "initialState": {
+    "board": {
+      "rows": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "B",
+          "B",
+          "B",
+          "B",
+          "B"
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "B",
+          null,
+          null,
+          null,
+          "B"
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "B",
+          null,
+          "B",
+          null,
+          "B"
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "B",
+          "B",
+          "B",
+          null,
+          "B"
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "B"
+        ],
+        [
+          "G",
+          "R",
+          "G",
+          "R",
+          "G",
+          "G",
+          "R",
+          "G",
+          "G",
+          "G",
+          "R",
+          "G",
+          "G",
+          "G",
+          "G",
+          "B"
+        ]
+      ]
+    },
+    "robot": {
+      "position": [
+        11,
+        0
+      ],
+      "direction": "E"
+    },
+    "stars": {}
+  },
+  "allowedInstructions": [
+    {
+      "condition": "R",
+      "operation": {
+        "type": "move",
+        "where": "forward"
+      }
+    },
+    {
+      "condition": "R",
+      "operation": {
+        "type": "move",
+        "where": "left"
+      }
+    },
+    {
+      "condition": "R",
+      "operation": {
+        "type": "move",
+        "where": "right"
+      }
+    },
+    {
+      "condition": "R",
+      "operation": {
+        "type": "function-call",
+        "functionNumber": 0
+      }
+    },
+    {
+      "condition": "G",
+      "operation": {
+        "type": "move",
+        "where": "forward"
+      }
+    },
+    {
+      "condition": "G",
+      "operation": {
+        "type": "move",
+        "where": "left"
+      }
+    },
+    {
+      "condition": "G",
+      "operation": {
+        "type": "move",
+        "where": "right"
+      }
+    },
+    {
+      "condition": "G",
+      "operation": {
+        "type": "function-call",
+        "functionNumber": 0
+      }
+    },
+    {
+      "condition": "B",
+      "operation": {
+        "type": "move",
+        "where": "forward"
+      }
+    },
+    {
+      "condition": "B",
+      "operation": {
+        "type": "move",
+        "where": "left"
+      }
+    },
+    {
+      "condition": "B",
+      "operation": {
+        "type": "move",
+        "where": "right"
+      }
+    },
+    {
+      "condition": "B",
+      "operation": {
+        "type": "function-call",
+        "functionNumber": 0
+      }
+    },
+    {
+      "operation": {
+        "type": "move",
+        "where": "forward"
+      }
+    },
+    {
+      "operation": {
+        "type": "move",
+        "where": "left"
+      }
+    },
+    {
+      "operation": {
+        "type": "move",
+        "where": "right"
+      }
+    },
+    {
+      "operation": {
+        "type": "function-call",
+        "functionNumber": 0
+      }
+    }
+  ],
+  "functionLengths": [
+    5
+  ]
+}
