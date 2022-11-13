@@ -136,7 +136,7 @@ const solveLevel = (level: Level): SolutionAttempt | undefined => {
 
 
 const main = async () => {
-    const level = await getLevel(12772)
+    const level = await getLevel(62)
     const solution = solveLevel(level)
     if (solution !== undefined) {
         saveLevelSolution(level.id, solution)

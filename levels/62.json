@@ -1,0 +1,347 @@
+{
+  "id": 62,
+  "name": "Red green is the code II",
+  "initialState": {
+    "board": {
+      "rows": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "B"
+        ],
+        [
+          "B",
+          "R",
+          "B",
+          "G",
+          "G",
+          "R",
+          "B",
+          "B",
+          "G",
+          "R",
+          "R",
+          "R",
+          "B",
+          "G",
+          "R",
+          "G"
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    "robot": {
+      "position": [
+        6,
+        0
+      ],
+      "direction": "E"
+    },
+    "stars": {}
+  },
+  "allowedInstructions": [
+    {
+      "condition": "R",
+      "operation": {
+        "type": "move",
+        "where": "forward"
+      }
+    },
+    {
+      "condition": "R",
+      "operation": {
+        "type": "move",
+        "where": "left"
+      }
+    },
+    {
+      "condition": "R",
+      "operation": {
+        "type": "move",
+        "where": "right"
+      }
+    },
+    {
+      "condition": "R",
+      "operation": {
+        "type": "function-call",
+        "functionNumber": 0
+      }
+    },
+    {
+      "condition": "G",
+      "operation": {
+        "type": "move",
+        "where": "forward"
+      }
+    },
+    {
+      "condition": "G",
+      "operation": {
+        "type": "move",
+        "where": "left"
+      }
+    },
+    {
+      "condition": "G",
+      "operation": {
+        "type": "move",
+        "where": "right"
+      }
+    },
+    {
+      "condition": "G",
+      "operation": {
+        "type": "function-call",
+        "functionNumber": 0
+      }
+    },
+    {
+      "condition": "B",
+      "operation": {
+        "type": "move",
+        "where": "forward"
+      }
+    },
+    {
+      "condition": "B",
+      "operation": {
+        "type": "move",
+        "where": "left"
+      }
+    },
+    {
+      "condition": "B",
+      "operation": {
+        "type": "move",
+        "where": "right"
+      }
+    },
+    {
+      "condition": "B",
+      "operation": {
+        "type": "function-call",
+        "functionNumber": 0
+      }
+    },
+    {
+      "operation": {
+        "type": "move",
+        "where": "forward"
+      }
+    },
+    {
+      "operation": {
+        "type": "move",
+        "where": "left"
+      }
+    },
+    {
+      "operation": {
+        "type": "move",
+        "where": "right"
+      }
+    },
+    {
+      "operation": {
+        "type": "function-call",
+        "functionNumber": 0
+      }
+    }
+  ],
+  "functionLengths": [
+    5
+  ]
+}
