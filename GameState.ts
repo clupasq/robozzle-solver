@@ -1,5 +1,4 @@
 import fastCartesian from "fast-cartesian"
-
 export type CellColor = "R" | "G" | "B"
 
 export type Coords = [number, number]
@@ -165,7 +164,7 @@ const enumeratePossibilitiesForLength = (length: number, instructions: Instructi
 
 const enumeratePossibilitiesUpToLength = (maxLength: number, instructions: Instruction[]): Instruction[][] => {
     const fnInstrs = []
-    for (let i = 0; i <= maxLength; i++) {
+    for (let i = maxLength; i >= 0; i--) {
         for (const p of enumeratePossibilitiesForLength(i, instructions)) {
             fnInstrs.push(p)
         }

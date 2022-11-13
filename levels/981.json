@@ -1,0 +1,347 @@
+{
+  "id": 981,
+  "name": "Stack Memory Tutorial 1",
+  "initialState": {
+    "board": {
+      "rows": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "R",
+          null,
+          null,
+          null,
+          "R",
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "R",
+          null,
+          null,
+          null,
+          "R",
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "R",
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "R",
+          "R",
+          "R",
+          "R",
+          "R",
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "R",
+          null,
+          "R",
+          null,
+          "R",
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "R",
+          "R",
+          "R",
+          null,
+          "R",
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "R",
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "R",
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "R",
+          null,
+          null
+        ],
+        [
+          "R",
+          "G",
+          "B",
+          "G",
+          "B",
+          "B",
+          "G",
+          "G",
+          "G",
+          "B",
+          "G",
+          "B",
+          "B",
+          "R",
+          null,
+          null
+        ]
+      ]
+    },
+    "robot": {
+      "position": [
+        11,
+        0
+      ],
+      "direction": "E"
+    },
+    "stars": {}
+  },
+  "allowedInstructions": [
+    {
+      "condition": "R",
+      "operation": {
+        "type": "move",
+        "where": "forward"
+      }
+    },
+    {
+      "condition": "R",
+      "operation": {
+        "type": "move",
+        "where": "left"
+      }
+    },
+    {
+      "condition": "R",
+      "operation": {
+        "type": "move",
+        "where": "right"
+      }
+    },
+    {
+      "condition": "R",
+      "operation": {
+        "type": "function-call",
+        "functionNumber": 0
+      }
+    },
+    {
+      "condition": "G",
+      "operation": {
+        "type": "move",
+        "where": "forward"
+      }
+    },
+    {
+      "condition": "G",
+      "operation": {
+        "type": "move",
+        "where": "left"
+      }
+    },
+    {
+      "condition": "G",
+      "operation": {
+        "type": "move",
+        "where": "right"
+      }
+    },
+    {
+      "condition": "G",
+      "operation": {
+        "type": "function-call",
+        "functionNumber": 0
+      }
+    },
+    {
+      "condition": "B",
+      "operation": {
+        "type": "move",
+        "where": "forward"
+      }
+    },
+    {
+      "condition": "B",
+      "operation": {
+        "type": "move",
+        "where": "left"
+      }
+    },
+    {
+      "condition": "B",
+      "operation": {
+        "type": "move",
+        "where": "right"
+      }
+    },
+    {
+      "condition": "B",
+      "operation": {
+        "type": "function-call",
+        "functionNumber": 0
+      }
+    },
+    {
+      "operation": {
+        "type": "move",
+        "where": "forward"
+      }
+    },
+    {
+      "operation": {
+        "type": "move",
+        "where": "left"
+      }
+    },
+    {
+      "operation": {
+        "type": "move",
+        "where": "right"
+      }
+    },
+    {
+      "operation": {
+        "type": "function-call",
+        "functionNumber": 0
+      }
+    }
+  ],
+  "functionLengths": [
+    6
+  ]
+}

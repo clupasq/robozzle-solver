@@ -1,0 +1,1 @@
+[ (B)|forward, (B)|left, (B)|forward, (B)|right, (B)|F1 ]

@@ -2,7 +2,15 @@ import axios from "axios"
 import {promises as fsPromises} from "fs"
 import path from "path"
 import {XMLParser} from "fast-xml-parser"
-import {createInstructionSet, coordsToString, Level, Row, CellColor} from "./GameState"
+import {
+    createInstructionSet,
+    coordsToString,
+    Level,
+    Row,
+    CellColor,
+    SolutionAttempt,
+    solutionAttemptToString
+} from "./GameState"
 
 const downloadLevelAsXmlString = async (levelNo: number): Promise<string> => {
     const response = await axios({
@@ -169,6 +177,7 @@ const downloadLevel = async (levelNo: number): Promise<Level> => {
 const CACHE_DIR = "./levels"
 
 const getLevelCachePath = (levelNo: number) => path.join(CACHE_DIR, `${levelNo}.json`)
+const getLevelSolutionPath = (levelNo: number) => path.join(CACHE_DIR, `${levelNo}.solution.txt`)
 
 const loadLevelFromCache = async (levelNo: number): Promise<Level | undefined> => {
     try {
@@ -197,6 +206,10 @@ const saveLevelToCache = async (level: Level): Promise<void> => {
         }
         return undefined
     }
+}
+
+export const saveLevelSolution = async (levelNo: number, solution: SolutionAttempt) => {
+    await fsPromises.writeFile(getLevelSolutionPath(levelNo), solutionAttemptToString(solution))
 }
 
 export const getLevel = async (levelNo: number): Promise<Level> => {

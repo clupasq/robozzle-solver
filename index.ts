@@ -1,8 +1,8 @@
 import {
-    Board, CellColor, GameState, Row, allocateInstructions,
-    execute, Instruction, CONSOLE_LOGGER, createInstructionSet, solutionAttemptToString, Level, Condition
+    Board, CellColor, Row, allocateInstructions,
+    execute, solutionAttemptToString, Level, SolutionAttempt
 } from "./GameState"
-import {getLevel} from "./LevelDownloader"
+import {getLevel, saveLevelSolution} from "./LevelDownloader"
 
 const parseCell = (cellStr: string): CellColor | undefined => {
     if (cellStr === "R" || cellStr === "G" || cellStr === "B") {
@@ -112,7 +112,7 @@ const parseBoard = (boardStr: string): Board => {
 // }
 // const instructions: Instruction[] = createInstructionSet(1, [])
 
-const solveLevel = (level: Level) => {
+const solveLevel = (level: Level): SolutionAttempt | undefined => {
     console.log(`Solving level ${level.id}...`)
     const sols = allocateInstructions(level.functionLengths, level.allowedInstructions)
 
@@ -128,7 +128,7 @@ const solveLevel = (level: Level) => {
         if (result) {
             console.log("SOLVED: ", solutionAttemptToString(sol))
             console.log("Attempts: ", attempt)
-            return
+            return sol
         }
     }
     console.log(`No solution after ${attempt} attemps...`)
@@ -136,8 +136,11 @@ const solveLevel = (level: Level) => {
 
 
 const main = async () => {
-    const level = await getLevel(94)
-    solveLevel(level)
+    const level = await getLevel(12772)
+    const solution = solveLevel(level)
+    if (solution !== undefined) {
+        saveLevelSolution(level.id, solution)
+    }
 
     // execute(level.initialState, [[
     //     { condition: "R", operation: { type: "move", where: "forward" }},
